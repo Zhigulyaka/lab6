@@ -1,32 +1,32 @@
-cmake_minimum_required(VERSION 2.8) #Проверка версии CMake.
+cmake_minimum_required(VERSION 2.8) #РџСЂРѕРІРµСЂРєР° РІРµСЂСЃРёРё CMake.
 
-set(PROJECT_NAME lab6) #Создаем обычную локальную переменную с именем проекта
-project(${PROJECT_NAME}) # Название проекта
+set(PROJECT_NAME lab6) #РЎРѕР·РґР°РµРј РѕР±С‹С‡РЅСѓСЋ Р»РѕРєР°Р»СЊРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ СЃ РёРјРµРЅРµРј РїСЂРѕРµРєС‚Р°
+project(${PROJECT_NAME}) # РќР°Р·РІР°РЅРёРµ РїСЂРѕРµРєС‚Р°
 
+set(arrlist arrlist)
+set(arrlistlib arrlistlib) #РџРµСЂРµРјРµРЅРЅР°СЏ СЃ РёРјРµРЅРµРј Р±РёР±Р»РёРѕС‚РµРєРё
+set(test test) #РџРµСЂРµРјРµРЅРЅР°СЏ С‚РµСЃС‚РѕРІРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ
+set(gtest gtest) #РџРµСЂРµРјРµРЅРЅР°СЏ СЃ РёРјРµРЅРµРј Р±РёР±Р»РёРѕС‚РµРєРё Google Tests
 
-set(arrlistlib arrlistlib) #Переменная с именем библиотеки
-set(test test) #Переменная тестового приложения
-set(gtest gtest) #Переменная с именем библиотеки Google Tests
-
-set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
-if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компилятора вариантов сборки
-  set(CMAKE_BUILD_TYPE Release) #Если нет то устанавливаем Release
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #РЎРѕР·РґР°РµС‚СЃСЏ РїРµСЂРµРјРµРЅРЅР°СЏ CMAKE_CONFIGURATION_TYPES СЃРѕ Р·РЅР°С‡РµРЅРёРµРј "Debug;Release" Рё РјРµС‚РєРѕР№/СЂР°Р·РґРµР»РѕРј Configs, РїРµСЂРµРјРµРЅРЅР°СЏ СЃРѕС…СЂР°РЅРёРµС‚СЃСЏ РІ СЃРїРµС†РёР°Р»СЊРЅРѕРј С„Р°Р№Р»Рµ РґРѕСЃС‚СѓРїРЅРѕРј РёР· РІСЃРµС… С„Р°Р№Р»РѕРІ,
+if(NOT CMAKE_BUILD_TYPE) # РїСЂРѕРІРµСЂРєР° РёРјРµСЋС‰РёС…СЃСЏ Сѓ РєРѕРјРїРёР»СЏС‚РѕСЂР° РІР°СЂРёР°РЅС‚РѕРІ СЃР±РѕСЂРєРё
+  set(CMAKE_BUILD_TYPE Release) #Р•СЃР»Рё РЅРµС‚ С‚Рѕ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Release
 endif()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/arrlistlib) #Добавляем директорию "${CMAKE_CURRENT_SOURCE_DIR}/listlib" в дополняемые каталоги включаемых файлов
-#${CMAKE_CURRENT_SOURCE_DIR} - стандартная переменная с адресом рабочей директории
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/arrlistlib) #Р”РѕР±Р°РІР»СЏРµРј РґРёСЂРµРєС‚РѕСЂРёСЋ "${CMAKE_CURRENT_SOURCE_DIR}/listlib" РІ РґРѕРїРѕР»РЅСЏРµРјС‹Рµ РєР°С‚Р°Р»РѕРіРё РІРєР»СЋС‡Р°РµРјС‹С… С„Р°Р№Р»РѕРІ
+#${CMAKE_CURRENT_SOURCE_DIR} - СЃС‚Р°РЅРґР°СЂС‚РЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ СЃ Р°РґСЂРµСЃРѕРј СЂР°Р±РѕС‡РµР№ РґРёСЂРµРєС‚РѕСЂРёРё
 
-
+add_subdirectory(arrlist)
 add_subdirectory(arrlistlib)
 add_subdirectory(test)
 add_subdirectory(gtest)
 
-#file(GLOB hdrs "*.h*") #Добавляем в переменную hdrs все файлы с расширением .h
-#file(GLOB srcs "*.cpp") #Добавляем в переменную srcs все файлы с расширением .cpp
+#file(GLOB hdrs "*.h*") #Р”РѕР±Р°РІР»СЏРµРј РІ РїРµСЂРµРјРµРЅРЅСѓСЋ hdrs РІСЃРµ С„Р°Р№Р»С‹ СЃ СЂР°СЃС€РёСЂРµРЅРёРµРј .h
+#file(GLOB srcs "*.cpp") #Р”РѕР±Р°РІР»СЏРµРј РІ РїРµСЂРµРјРµРЅРЅСѓСЋ srcs РІСЃРµ С„Р°Р№Р»С‹ СЃ СЂР°СЃС€РёСЂРµРЅРёРµРј .cpp
 
 #include_directories(lib1)
-#add_executable(${PROJECT_NAME} ${srcs} ${hdrs}) #Создаем проект с именем из переменной ${PROJECT_NAME}, в него добавляются файлы из переменных ${srcs} и ${hdrs}
+#add_executable(${PROJECT_NAME} ${srcs} ${hdrs}) #РЎРѕР·РґР°РµРј РїСЂРѕРµРєС‚ СЃ РёРјРµРЅРµРј РёР· РїРµСЂРµРјРµРЅРЅРѕР№ ${PROJECT_NAME}, РІ РЅРµРіРѕ РґРѕР±Р°РІР»СЏСЋС‚СЃСЏ С„Р°Р№Р»С‹ РёР· РїРµСЂРµРјРµРЅРЅС‹С… ${srcs} Рё ${hdrs}
 
 
- #Собираем проект в поддиректории lib1
-#target_link_libraries(${PROJECT_NAME} ${MyLib1}) #Подключаем к проекту с именем ${PROJECT_NAME} библиотеку с именем ${MyLib1}
+ #РЎРѕР±РёСЂР°РµРј РїСЂРѕРµРєС‚ РІ РїРѕРґРґРёСЂРµРєС‚РѕСЂРёРё lib1
+#target_link_libraries(${PROJECT_NAME} ${MyLib1}) #РџРѕРґРєР»СЋС‡Р°РµРј Рє РїСЂРѕРµРєС‚Сѓ СЃ РёРјРµРЅРµРј ${PROJECT_NAME} Р±РёР±Р»РёРѕС‚РµРєСѓ СЃ РёРјРµРЅРµРј ${MyLib1}
